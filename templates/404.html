@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Artnie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/uikit.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <style>
+        .myclass {
+            background-image: url("{{ url_for('static', filename='images/404-opt.jpg') }}");
+        }
+
+        /* COLORS */
+        .maincolor {
+            color: #ffffff;
+        }
+
+        /* TEXT */
+        .maintext {
+            font-weight: 700;
+            font-size: 120px;
+        }
+
+        .secondarytext {
+            font-weight: 400;
+            font-size: 25px;
+            line-height: 1;
+        }
+
+        /* MEDIA QUERIES */
+        @media(min-width: 640px) {
+            .secondarytext {
+                font-weight: 400;
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+<body style="background-color:#323232">
+
+    <!-- NAV -->
+    <div
+        uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+            <div class="uk-navbar-center">
+                <a class="uk-navbar-item uk-logo" href="{{ url_for('home') }}">
+                    <img data-src="../static/images/logo_3_opt.png" width="80" height="80" alt="" uk-img>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <!-- NAV -->
+
+    <div class="uk-background-cover uk-panel uk-flex uk-flex-center uk-flex-middle uk-flex-column myclass" uk-height-viewport="offset-top: true">
+        <div class="maincolor maintext">404!</div>
+        <div class="maincolor secondarytext uk-container uk-text-center">
+            <p>The page you are looking for does not exist.</p>
+        </div>
+        <div class="uk-padding">
+            <a href="{{ url_for('home') }}" class="uk-button uk-button-secondary">RETURN TO HOME</a>
+        </div>
+        <div class="uk-padding">
+            <a href="https://www.instagram.com/alex.navarretega/">
+                <img src="{{ url_for('static', filename='images/instagram_1.svg') }}" width="40" height="40" style="color:#f5f5f5" uk-svg>
+            </a>
+            <a class="uk-margin-left" href="#">
+                <img src="{{ url_for('static', filename='images/facebook_1.svg') }}" width="40" height="40" style="color:#f5f5f5" uk-svg>
+            </a>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/uikit.min.js') }}"></script>
+</body>
+</html>

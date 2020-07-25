@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Artnie</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/uikit.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/BeerSlider.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/snipcart.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <meta name="google-site-verification" content="5D71rc03_8i9dJb9m8nq5Mjoy8ROCbkYibnEULwe4ps" />
+
+</head>
+
+<body>
+
+    <div style="background-color: #3AAFA9">
+
+        <!-- NAV -->
+        <div
+            uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo" href="#">
+                        <img data-src="{{ url_for('static', filename='images/logo_3_opt.png') }}" width="70" height="70" alt="" uk-img>
+                    </a>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="https://www.instagram.com/alex.navarretega/">
+                                <img src="{{ url_for('static', filename='images/instagram_1.svg') }}" width="30" height="30"
+                                    style='color:#D8DAD3' uk-svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="snipcart-checkout">
+                                <img src="{{ url_for('static', filename='images/shopping-cart.svg') }}" width="30" height="30" 
+                                style="color: #D8DAD3" uk-svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- NAV -->
+
+        <!-- SECTION 1 -->
+        <div class="uk-section uk-flex uk-flex-middle" style="background-color:#3AAFA9" uk-height-viewport="offset-top: true">
+            <div class="uk-container">
+                <div class="uk-child-width-1-2@l" uk-grid>
+                    <div class="uk-text-center uk-flex uk-flex-center uk-flex-middle">
+                        <div>
+                            <h1 class="mainfont maincolor maintext">
+                                CREATE<br> <span class="secondarycolor">UNIQUE ART.</span>
+                            </h1>
+                            <p class="secondaryfont secondarycolor secondarytext">
+                                Transform your boring images <br> into <span id='typed' style="font-weight: 700;">stylish</span>designs
+                            </p>
+                            <a href="{{ url_for('upload') }}" class="uk-button uk-button-danger mainfont">GET STARTED</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="beer-slider" class="beer-slider uk-border-rounded uk-box-shadow-large uk-box-shadow-hover-xlarge" data-beer-label="BORING">
+                            <img src="../static/images/5-opt.jpg">
+                            <div class="beer-reveal" data-beer-label="STYLED">
+                                <img src="../static/images/5_styled-opt.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SECTION 1 -->
+
+        <!-- SECTION 2 -->
+        <div class="uk-section" style="background-color:#f5f5f5">
+            <div class="uk-container">
+                <div class="uk-child-width-1-2@l" uk-grid>
+                    <div class="uk-text-left uk-flex uk-flex-center uk-flex-middle">
+                        <div>
+                            <h1 class="mainfont secondarycolor mainparagraph">
+                                <span class="othercolor">STYLE</span> <br>YOUR FAVORITE IMAGE
+                            </h1>
+                            <p class="mainfont secondarycolor secondaryparagraph">
+                                Easily get images from Instagram, Facebook, Google Photos, Dropbox or directly from your camera.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="beer-slider" class="beer-slider uk-border-rounded uk-box-shadow-large uk-box-shadow-hover-xlarge" data-beer-label="BORING">
+                            <img src="../static/images/4-opt.jpg">
+                            <div class="beer-reveal" data-beer-label="STYLED">
+                                <img src="../static/images/4_styled-opt.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-child-width-1-2@l" uk-grid>
+                    <div>
+                        <div id="beer-slider" class="beer-slider uk-border-rounded uk-box-shadow-large uk-box-shadow-hover-xlarge" data-beer-label="BORING">
+                            <img src="../static/images/1-opt.jpg">
+                            <div class="beer-reveal" data-beer-label="STYLED">
+                                <img src="../static/images/1_styled-opt.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-text-left uk-flex uk-flex-middle">
+                        <div>
+                            <h1 class="mainfont secondarycolor mainparagraph">
+                                <span class="othercolor">UPSCALE</span> <br>YOUR STYLED IMAGE
+                            </h1>
+                            <p class="mainfont secondarycolor secondaryparagraph">
+                                We do not require a minimum resolution for the images you upload.<br>
+                                We will upscale 4X your styled image without losing quality using AI.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SECTION 2 -->
+
+        <!-- SECTION 3 -->
+        <div class="uk-section" style="background-color:#ffffff; border-bottom: 2px solid #3aafa9" uk-height-viewport>
+            <div class="uk-container">
+                <div class="uk-child-width-1-2@l" uk-grid>
+                    <div class="uk-text-left uk-flex uk-flex-center uk-flex-middle">
+                        <div>
+                            <h2 class="mainfont othercolor maintext">
+                                VISUALIZE YOUR UNIQUE <span class="secondarycolor">DESIGN</span>
+                            </h2>
+                            <a href="{{ url_for('upload') }}" class="uk-button uk-button-danger mainfont">START NOW</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div uk-slideshow="ratio: 1:1; animation: fade">
+                            <div class="uk-position-relative uk-visible-toggle uk-dark" tabindex="-1">
+                                <ul class="uk-slideshow-items">
+                                    <li>
+                                        <img src="../static/images/mockups/3_1.jpg" alt="" uk-cover>
+                                    </li>
+                                    <li>
+                                        <img src="../static/images/mockups/1_2.jpg" alt="" uk-cover>
+                                    </li>
+                                    <li>
+                                        <img src="../static/images/mockups/2_3.jpg" alt="" uk-cover>
+                                    </li>
+                                </ul>
+                                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#"
+                                    uk-slidenav-previous uk-slideshow-item="previous"></a>
+                                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#"
+                                    uk-slidenav-next uk-slideshow-item="next"></a>
+                            </div>
+                            <ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-dark"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SECTION 3 -->
+
+        <!-- SECTION 4 -->
+        <div class="uk-section uk-flex uk-flex-center uk-flex-middle uk-grid-collapse" style="background-color:#ffffff" uk-grid>
+            <div class="uk-width-1-2@l uk-padding">
+                <h4 class="secondarycolor helptext uk-text-center">help@artnie.com</h4>
+            </div>
+            <div class="uk-width-1-2@l uk-padding">
+                <div class="uk-width-1-2@s uk-width-2-5@m">
+                    <ul class="uk-nav uk-nav-default">
+                        <li class="uk-nav-header">policies</li>
+                        <li><a href="#" uk-toggle="target: #modal-shipping">Shipping policies</a></li>
+                        <li><a href="#" uk-toggle="target: #modal-returns">Returns policies</a></li>
+                    </ul>
+                </div>
+                <!-- Shipping Modal -->
+                <div id="modal-shipping" uk-modal>
+                    <div class="uk-modal-dialog uk-modal-body">
+                        <button class="uk-modal-close-default" type="button" uk-close></button>
+                        <h2 class="uk-modal-title">Shipping policies</h2>
+                        <p>
+                            <b>Here are our estimated shipping delivery times:</b><br><br>
+                            USA: 5-­8 business days<br>
+                            Canada: 6­-12 business days<br>
+                            World: 10­-20 business days<br><br>
+                            Your order will be sent out on average within 3 days of ordering.<br><br>
+                            <b>International shipping:</b><br><br>
+                            International shipments may incur customs fees. The customs policy is different in each country, 
+                            and the fee is usually based on a variety of factors like weight, value, and size.<br><br>
+                            We do not take responsibility for customs fees.<br><br>
+                            <b>Order never arrived:</b><br><br>
+                            If your order didn't end up arriving, be sure to let us know!<br><br>
+                            First, check your shipping confirmation and check that you had entered the correct address. If 
+                            the address was incorrect, we'd be happy to send you another order to the correct address, 
+                            however, it will have to be at your cost.<br><br>
+                            If the shipping address was correct, get in touch with us at <b>help@artnie.com</b>
+                            making sure you quote your order number. We'll see what can be done.<br><br>
+                        </p>
+                    </div>
+                </div>
+                <!-- Returns Modal -->
+                <div id="modal-returns" uk-modal>
+                    <div class="uk-modal-dialog uk-modal-body">
+                        <button class="uk-modal-close-default" type="button" uk-close></button>
+                        <h2 class="uk-modal-title">Returns policies</h2>
+                        <p>
+                            <b>Damaged items:</b><br><br>
+                            The last thing we want is for you to be stuck with a damaged item. If an order arrives damaged,
+                            then please get in touch with a photo within a week's time!<br><br>
+                            <b>Wrong size or model:</b><br><br>
+                            If you're unhappy with the size or model you've received, first check that the size/model stated on the garment
+                            matches the size stated on the invoice. Though rare, it's possible that the garment was
+                            mislabelled. Let us know and we'll get you sorted out.<br><br>
+                            If you'd like a different size, get in touch with us at <b>help@artnie.com</b> and we'll let you
+                            know what your next steps are.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SECTION 4 -->
+
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/uikit.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/BeerSlider.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/typed.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.min.js') }}"></script>
+    <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="<API_KEY>"></script>
+
+</body>
+
+</html>

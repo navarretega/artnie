@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Artnie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/uikit.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <style>
+        .maincolor {
+            color: #2f4858;
+        }
+
+        .header {
+            font-weight: 800;
+            font-size: 30px;
+        }
+
+        .errorheader {
+            font-weight: 800;
+            font-size: 40px;            
+        }
+
+        .subheader {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .myclass {
+            background-image: url("{{ url_for('static', filename='images/error_1.png') }}");
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="hideDiv" style="background-color: #f5f5fc">
+        <div class="uk-grid-collapse uk-text-center" uk-grid>
+
+            <div class="uk-width-1-2@l">
+                <div class="uk-width-1-1 uk-background-cover uk-flex uk-flex-center uk-flex-bottom myclass uk-grid-collapse"
+                    uk-height-viewport uk-grid>
+                    <div class="uk-margin-large-bottom">
+                        <div class="uk-width-1-1 maincolor">
+                            <h1 class="errorheader">SORRY!</h1>
+                            <p class="subheader">We coudn't style your image. We're having issues.<br>
+                                Please try again later.
+                                <!-- <mark>WNTERIZCOMING</mark> -->
+                            </p>
+                        </div>
+                        <div class="uk-width-1-1">
+                            <a href="{{ url_for('upload') }}" class="uk-button uk-button-secondary">TRY AGAIN</a>
+                        </div>
+                        <div class="uk-width-1-1 uk-margin">
+                            <a href="https://www.instagram.com/alex.navarretega/">
+                                <img src="{{ url_for('static', filename='images/instagram.svg') }}" width="30" height="30" uk-svg>
+                            </a>
+                            <span class="uk-padding-small"></span>
+                            <img src="{{ url_for('static', filename='images/facebook.svg') }}" width="30" height="30" uk-svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-width-expand@l uk-flex uk-flex-center uk-flex-middle uk-visible@l">
+                <img data-src="{{ url_for('static', filename='images/logo_3.png') }}" width="500" height="500" alt="" uk-img>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/uikit.min.js') }}"></script>
+
+</body>
+
+</html>

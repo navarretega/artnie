@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Artnie</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/uikit.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/snipcart.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+
+<body style="background-color:#3aafa9">
+
+    <div id="mysection" >
+
+        <!-- NAV -->
+        <div
+            uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo" href="{{ url_for('home') }}">
+                        <img data-src="../static/images/logo_3_opt.png" width="70" height="70" alt="" uk-img>
+                    </a>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="https://www.instagram.com/alex.navarretega/">
+                                <img src="{{ url_for('static', filename='images/instagram_1.svg') }}" width="30" height="30"
+                                    style='color:#D8DAD3' uk-svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="snipcart-checkout">
+                                <img src="{{ url_for('static', filename='images/shopping-cart.svg') }}" width="30" height="30" 
+                                style="color: #D8DAD3" uk-svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- NAV -->
+
+        <!-- SECTION 1 -->
+        <div class="uk-container uk-container-small uk-flex uk-flex-center uk-flex-middle" uk-height-viewport="offset-top: true">
+
+            <div class="uk-width-1-1 uk-card uk-card-default uk-card-body uk-text-center uk-border-rounded uk-box-shadow-large uk-box-shadow-hover-xlarge uk-grid-collapse" uk-grid>
+                <div class="uk-width-1-1 uk-width-1-2@l">
+                        <!-- action="/model" method="POST" -->
+                    <form id="mate">
+                        <div style="padding: 40px 40px">
+                            <div>
+                                <h3 class="mainfont secondarycolor maintext">1. UPLOAD YOUR IMAGE</h3>
+                                <p class="mainfont secondarycolor secondarytext">
+                                    The higher the resolution, the better the picture will be.
+                                </p>
+                                <span class="uploadbtn mainfont">
+                                    <input type="hidden" name="url" role="uploadcare-uploader" data-image-shrink="null" value="{{ cdn }}" />
+                                </span>
+                            </div>
+                            <hr class="uk-text-center">
+                            <div>
+                                <h3 class="mainfont secondarycolor maintext">2. PICK YOUR PRODUCT</h3>
+                                <p class="mainfont secondarycolor secondarytext">
+                                    Just choose one, you can always go back.
+                                </p>
+                                <ul class="uk-list uk-text-left mainfont secondarytext">
+                                    <li>
+                                        <label>
+                                            <input class="uk-radio" type="radio" name="product" value="iPhoneCase" checked>
+                                            iPhone Case<br>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input class="uk-radio" type="radio" name="product" value="Poster">
+                                            Matte Poster<br>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input class="uk-radio" type="radio" name="product" value="ToteBag">
+                                            Tote Bag<br>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="uk-width-1-1 uk-margin-top uk-flex uk-flex-center">
+                                <button class="uk-button uk-button-primary mainfont stylebtn" disabled>STYLE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            
+                <div class="uk-visible@m uk-width-1-2@l uk-container uk-flex uk-flex-center uk-flex-middle" style="background-color:#f5f5fc">
+                    <div style="padding: 40px 40px">
+                        <img src="{{ url_for('static', filename='images/artist.svg') }}" alt="" width="250">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- SECTION 1 -->
+    
+    </div>
+
+    <!-- LOADER -->
+    <div id="myloader" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column loader" style="display:none" uk-height-viewport="offset-top: true">
+        <div class="uk-container">
+            <!-- <h1 class="mainfont loadertext uk-text-center" style="color: #ffffff">STYLING YOUR IMAGE...</h1> -->
+            <blockquote class="mainfont maincolor loadertext uk-text-center" cite="#">
+                <p id="randomquote" class="uk-margin-small-bottom"></p>
+                <footer class="mainfont maincolor">Pablo Picasso</footer>
+            </blockquote> 
+            <div class="uk-padding">
+                <div class="sk-folding-cube">
+                    <div class="sk-cube1 sk-cube"></div>
+                    <div class="sk-cube2 sk-cube"></div>
+                    <div class="sk-cube4 sk-cube"></div>
+                    <div class="sk-cube3 sk-cube"></div>
+                </div>
+            </div>
+            <p class="mainfont secondarycolor uk-text-center">
+                Hang on. We're styling your image... <br>
+                Just give us a couple of seconds.
+            </p>
+        </div> 
+
+    </div>
+    <!-- LOADER -->
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/uikit.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/upload.min.js') }}"></script>
+    <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="YjI2YjAyMTMtMWJiMy00ZTdmLThhOTEtNmM3YzYxNDQ1ZGYyNjM2ODc2MDc5MjQ5NTEzODY0"></script>
+
+</body>
+
+</html>

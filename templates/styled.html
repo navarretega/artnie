@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Artnie</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/uikit.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styled.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/snipcart.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+
+<body>
+
+    <div class="uk-grid-collapse" uk-grid>
+
+        <div class="uk-width-1-2@l">
+            <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+                <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-item uk-logo" href="{{ url_for('home') }}">
+                            <img data-src="{{ url_for('static', filename='images/logo_3_opt.png') }}" width="70" height="70" alt=""
+                                uk-img>
+                        </a>
+                    </div>
+                    <div class="uk-navbar-right">
+                        <ul class="uk-navbar-nav">
+                            <li>
+                                <a href="https://www.instagram.com/alex.navarretega/">
+                                    <img src="{{ url_for('static', filename='images/instagram_1.svg') }}" width="30" height="30"
+                                        style='color:#3aafa9' uk-svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="snipcart-checkout">
+                                    <img src="{{ url_for('static', filename='images/shopping-cart.svg') }}" width="30" height="30"
+                                        style='color:#3aafa9' uk-svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="uk-container uk-container-small uk-padding-small">
+                <ul class="uk-switcher component-nav">
+                    {% for variants in mockups %}
+                    <li>
+                        <div uk-slideshow="ratio: 1:1; animation: fade">
+                            <div class="uk-position-relative uk-dark" tabindex="-1">
+                                <ul class="uk-slideshow-items">
+                                    {% for url in variants['mockup_urls'] %}
+                                    <li>
+                                        <img src="{{ url }}" alt="" uk-cover uk-img>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <a class="uk-position-center-left uk-position-small" href="#"
+                                    uk-slidenav-previous uk-slideshow-item="previous"></a>
+                                <a class="uk-position-center-right uk-position-small" href="#"
+                                    uk-slidenav-next uk-slideshow-item="next"></a>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="uk-width-expand@l rightpanel" style="background-color: #18252A">
+            <div class="uk-padding">
+                <div class="uk-container uk-text-center mainfont maincolor othertext">
+                    <button id="btnname" class="uk-button uk-button-default mainfont maincolor othertext" type="button">Choose a
+                        Model</button>
+                    <div uk-dropdown="mode: click">
+                        <ul class="uk-nav uk-nav-default"
+                            uk-switcher="connect: .component-nav; animation: uk-animation-fade; swiping: false">
+                            {% for variants in mockups %}
+                            <li><a class="uk-dropdown-close drplink" href="#">{{ variants['model'] }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <hr class="uk-divider-small uk-text-center">
+
+                <ul class="uk-switcher component-nav">
+                    {% for variants in mockups %}
+                    <li>
+                        <div class="uk-grid-small uk-grid-match uk-text-left uk-container" uk-grid>
+                            <div class="uk-width-1-1 uk-text-center">
+                                {% if product in ('Poster', 'ToteBag') %}
+                                <h2 class="mainfont maincolor maintext" style="text-transform: uppercase;">{{ product }} | {{ variants['model'] }}</h2>
+                                {% elif product == 'iPhoneCase' %}
+                                <h2 class="mainfont maincolor maintext" style="text-transform: uppercase;">{{ variants['model'] }} Case</h2>
+                                {% endif %}
+                            </div>
+                            <div class="uk-width-1-1 uk-margin-top mainfont maincolor">
+                                <button class="uk-button uk-button-primary uk-width-1-1 snipcart-add-item mainfont maincolor othertext"
+                                    data-item-id="{{ variants['variantid'] }}" data-item-name="{{ product }}"
+                                    data-item-description="{{ variants['model'] }}"
+                                    data-item-price="{{ variants['price'] }}"
+                                    data-item-image="{{ variants['mockup_urls'][0] }}"
+                                    data-item-metadata='{"filehash": {{ filehash }}, "imageurl": {{ variants["mockup_urls"][0].lower() }} }'
+                                    data-item-url="https://artnie.com/validate">
+                                    <span uk-icon="cart"></span>
+                                    ADD TO CART | ${{ variants['price'] }}
+                                </button>
+                            </div>
+                            <div class="uk-width-1-1 uk-margin-medium-top mainfont secondarycolor secondarytext">
+                                <p>Your upscaled image:<br>
+                                    <span class="mainfont othercolor">{{ width }} x {{ height}} @ {{ variants['dpi'] }} DPI</span>
+                                    <u class="uk-link-muted" style="font-size:13px;">
+                                        <a href="#modal" uk-toggle>What is this?</a>
+                                    </u>
+                                </p>
+                                <div id="modal" uk-modal>
+                                    <div class="uk-modal-dialog uk-modal-body">
+                                        <button class="uk-modal-close-default" type="button" uk-close></button>
+                                        <h2 class="uk-modal-title">Resolution and DPI</h2>
+                                        <p>
+                                            Let's start by defining two important terms.
+                                        </p>
+                                        <p>
+                                            <b>Resolution</b> is is the measure of pixels in display, usually expressed in measurements of width x height.<br>
+                                            <b>DPI (dots per inch)</b> is the number of dots in a printed inch. The more dots the higher the quality of the print (more sharpness and detail).</b>
+                                        </p>
+                                        <p>
+                                            We need to consider both of those terms to maximise the quality print. <br>
+                                            Let's look at an example to make things clear.
+                                        </p>
+                                        <ul>
+                                            <li>Let's say you have a 1800 px x 1200 px image (width x height)</li>
+                                            <li>We will upscale 4X your image (without losing quality)</li>
+                                            <li>So now you have a 7200 px x 4800 px image</li>
+                                            <li>Let's say you are looking for a 16 inch x 16 inch matte poster</li>
+                                            <li>We will only print images at 300 DPI (or 150 DPI depending on product)</li>
+                                            <li>Therefore, your image size must be at least 4800 px x 4800 px (16 inch x 300 DPI = 4800 px)</li>
+                                            <li>Since your upscaled image has this requirement, we will allow you to buy a 16x16 inch poster</li>
+                                        </ul>
+                                        <p>
+                                            *Note: Depending on your initial image size your image might be resized to style it, but it will afterwards be upscaled.
+                                        </p>
+                                        <p>
+                                            <b>TLDR:</b><br>
+                                            You don't need to do any math. We'll do that for you. We will only show you the models/sizes if your image is qualified.<br>
+                                            However, please DO NOT upload images that have already been enlarged either in post-processing or by in-camera digital zoom.                
+                                        </p>
+                                    </div>
+                                </div>
+                                <ul class="uk-list">
+                                    {% if product == 'Poster' %}
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Museum-quality posters
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Printed on archival, acid-free paper
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Made on thick and durable matte paper
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Yields brilliant prints to brighten up any room.
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    {% elif product == 'ToteBag' %}
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Bag 15" x 15" (38.1cm x 38.1cm)
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Maximum weight limit – 44lbs (20kg)
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                100% spun polyester fabric
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Dual handles 100% natural cotton bull denim
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Handle length 11.8" (30 cm), width 1" (2.5cm)
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    {% elif product == 'iPhoneCase' %}
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Graphics are UV printed onto the case with a smooth, matte finish
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Solid, durable polycarbonate back with precisely aligned port openings
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Made of a BPA free hybrid Thermoplastic Polyurethane (TPU) and Polycarbonate (PC) material
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                Flexible, rigid thermoplastic polyurethane sides making it easy to take on and off
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-grid-collapse" uk-grid>
+                                            <div style="width:40px">
+                                                <span class="othercolor" uk-icon="icon: check"></span>
+                                            </div>
+                                            <div class="uk-width-expand uk-text-left">
+                                                5 mm raised bezel that keeps your phone's screen and camera from scratching on surfaces
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="uk-width-1-1 uk-padding">
+                                <div class="uk-flex uk-flex-center">
+                                    <form action="/upload" method="POST">
+                                        <input type="hidden" name="original_image_hash" value="{{ original_image_hash }}" />
+                                        <button class="uk-button uk-button-default mainfont maincolor othertext">GO BACK</button>
+                                    </form>
+                                </div>
+                                <p class="mainfont secondarycolor uk-text-center">Get in touch with us: help@artnie.com</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/uikit.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/uikit-icons.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="YjI2YjAyMTMtMWJiMy00ZTdmLThhOTEtNmM3YzYxNDQ1ZGYyNjM2ODc2MDc5MjQ5NTEzODY0"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/styled.min.js') }}"></script>
+
+</body>
+
+</html>
